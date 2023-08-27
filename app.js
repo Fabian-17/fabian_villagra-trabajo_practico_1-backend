@@ -1,19 +1,18 @@
 // Importaciones de las dependencias
-import { express } from 'express';
-import { helmet } from 'helmet';
-import { cors } from 'cors';
-import { morgan } from 'morgan';
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import morgan from 'morgan';
 import { body, validationResult } from 'express-validator';
-
 import dotenv from 'dotenv';
 dotenv.config();
 
 // Instancia de conexión a la base de datos
 import sequelize from './db.js';
 
-sequelize.authenticate()
-    .then(() => console.log('Conexión a base de datos exitosa'))
-    .catch((error) => console.log('Error al conectar a base de datos', error));
+ sequelize.sequelize.authenticate()
+     .then(() => console.log('Conexión a base de datos exitosa'))
+     .catch((error) => console.log('Error al conectar a base de datos', error));
 
 
 // puerto donde será escuchado el servidor
@@ -24,7 +23,7 @@ const app = express();
 
 app.post('/',
   body('email').notEmpty().isEmail(),
-  body('contraseña').notEmpty(),
+  body('password').notEmpty(),
   (req, res) => {
     const errors = validationResult(req);
 
