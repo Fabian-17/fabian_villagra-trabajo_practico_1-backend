@@ -70,7 +70,7 @@ export const crearUsuario = async (req, res) => {
         });
     }
 
-    console.log('funca')
+
 };
 
 
@@ -91,7 +91,7 @@ export const obtenerUsuarios = async (req, res) => {
             message: 'Error al obtener los usuarios'
         })
     }
-    console.log('funca2')
+    
 };
 
 
@@ -120,5 +120,5 @@ export const obtenerUsuario = async (req, res) => {
         return res.status(error.status || 500).json(error.message || 'Error interno del servidor');
     }
 
-    console.log('funca3')
+    
 };
