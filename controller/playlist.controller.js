@@ -1,4 +1,3 @@
-const ctrlplaylist = {};
 import playlist from "../models/playlist.js";
 
 
@@ -8,11 +7,11 @@ import playlist from "../models/playlist.js";
 
 // Obtener todas las playlist
 
-ctrlplaylist.obtenerPlaylists = async (req, res) => {
+export const obtenerPlaylists = async (req, res) => {
     try {
         const playlists = await playlist.findAll({
             where: {
-                id
+                id: req.params.id
             }
         });
 
@@ -28,7 +27,7 @@ ctrlplaylist.obtenerPlaylists = async (req, res) => {
 
 // Obtener una playlist
 
-ctrlplaylist.obtenerPlaylist = async (req, res) => {
+export const obtenerPlaylist = async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -55,7 +54,7 @@ ctrlplaylist.obtenerPlaylist = async (req, res) => {
 
 // Crear una playlist
 
-ctrlplaylist.crearPlaylist = async (req, res) => {
+export const crearPlaylist = async (req, res) => {
     const { nombre_playlist } = req.body;
     const userId = req.user.id;
 
@@ -91,7 +90,7 @@ ctrlplaylist.crearPlaylist = async (req, res) => {
 
 // Actualizar una playlist
 
-ctrlplaylist.actualizarPlaylist = async (req, res) => {
+export const actualizarPlaylist = async (req, res) => {
     try {
         const { id } = req.params;
         const playlist = await playlist.findByPk(id);
@@ -120,7 +119,7 @@ ctrlplaylist.actualizarPlaylist = async (req, res) => {
 
 // Eliminar una playlist
 
-ctrlplaylist.eliminarPlaylist = async (req, res) => {
+export const eliminarPlaylist = async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -145,5 +144,3 @@ ctrlplaylist.eliminarPlaylist = async (req, res) => {
         return res.status(error.status || 500).json(error.message || 'Error interno del servidor');
     }
 };
-
-export default ctrlplaylist
