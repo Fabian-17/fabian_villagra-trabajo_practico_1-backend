@@ -3,7 +3,8 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import morgan from 'morgan';
-import { body, validationResult } from 'express-validator';
+import { router } from './routes/usuario.routes.js';
+import { routes } from './routes/playlist.routes.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -17,18 +18,10 @@ const port = process.env.PORT || 3000
 
 const app = express();
 
-app.post('/',
-  body('email').notEmpty().isEmail(),
-  body('password').notEmpty(),
-  (req, res) => {
-    const errors = validationResult(req);
 
-    if (errors.isEmpty()) {
-      return res.json(req.body);
-    }
-    console.log(req.body);
-    res.status(400).json(errors.array());
-  });
+app.use('/usuario', router);
+app.use('/playlist', routes);
+
 
 // Middlewares
 app.use(cors());
