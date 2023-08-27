@@ -1,6 +1,6 @@
 import { sequelize, DataTypes } from "../db.js";
 import usuario from "./usuarios.js";
-import canciones from "./canciones.js";
+
 
 const playlist = sequelize.define('playlist', {
     id: {
@@ -33,13 +33,10 @@ const playlist = sequelize.define('playlist', {
     tableName: 'playlist'
 });
 
-playlist.belongsTo(usuario, {
-    foreignKey: 'id_usuario'
-});
+ playlist.belongsTo(usuario, {
+     foreignKey: 'id_usuario'
+ });
 
-playlist.hasMany(canciones, { 
-    foreignKey: 'id_playlist'
-});
 
 playlist.sync();
 

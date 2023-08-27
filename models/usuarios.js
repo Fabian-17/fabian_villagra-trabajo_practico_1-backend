@@ -1,5 +1,4 @@
 import { sequelize, DataTypes } from "../db.js";
-import playlist from "./playlist.js";
 
 const usuario = sequelize.define('usuario', {
     id: {
@@ -48,9 +47,6 @@ const usuario = sequelize.define('usuario', {
     tableName: 'usuario'
 });
 
-usuario.hasMany(playlist, { 
-    foreignKey: 'id_usuario'
-});
 
 usuario.sync();
 

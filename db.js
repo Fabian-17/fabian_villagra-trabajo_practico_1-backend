@@ -11,4 +11,11 @@ const sequelize = new Sequelize(
         dialect: process.env.DB_DIALECT
     });
 
-    export default { sequelize, Model, DataTypes }
+    export { sequelize, Model, DataTypes }
+
+    //Función para conectar a la base de datos
+    export const conectarBasedeDatos = async () =>{
+       await sequelize.authenticate()
+     .then(() => console.log('Conexión a base de datos exitosa'))
+     .catch((error) => console.log('Error al conectar a base de datos', error));
+    };

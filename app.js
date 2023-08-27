@@ -8,12 +8,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Instancia de conexión a la base de datos
-import sequelize from './db.js';
-
- sequelize.sequelize.authenticate()
-     .then(() => console.log('Conexión a base de datos exitosa'))
-     .catch((error) => console.log('Error al conectar a base de datos', error));
-
+import {conectarBasedeDatos} from './db.js';
+conectarBasedeDatos()
 
 // puerto donde será escuchado el servidor
 const port = process.env.PORT || 3000

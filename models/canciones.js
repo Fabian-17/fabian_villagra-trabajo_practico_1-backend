@@ -10,7 +10,7 @@ const canciones = sequelize.define('canciones' , {
     },
     nombre_cancion: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false   
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -33,9 +33,9 @@ const canciones = sequelize.define('canciones' , {
     tableName: 'canciones'
 });
 
-canciones.belongsTo(playlist, {
-    foreignKey: 'id_playlist'
-});
+ canciones.belongsTo(playlist, {
+     foreignKey: 'id_playlist'
+ });
 
 canciones.sync();
 
