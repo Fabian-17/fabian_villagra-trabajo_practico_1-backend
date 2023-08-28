@@ -3,7 +3,7 @@ import playlist from "../models/playlist.js";
 import usuario from "../models/usuarios.js";
 
 // ==========================================
-//         Rutas para CRUD de reservas
+//         Rutas para CRUD de playlists
 // ==========================================
 
 // Obtener todas las playlist
