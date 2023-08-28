@@ -1,5 +1,5 @@
 import playlist from "../models/playlist.js";
-
+import usuario from "../models/usuarios.js";
 
 // ==========================================
 //         Rutas para CRUD de reservas
@@ -55,8 +55,8 @@ export const obtenerPlaylist = async (req, res) => {
 // Crear una playlist
 
 export const crearPlaylist = async (req, res) => {
-    const { nombre_playlist } = req.body;
-    const userId = req.user.id;
+    const { nombre_playlist, id_usuario } = req.body;
+
 
     try {
         // Se valida que nombre_playlist no esté vacío
@@ -65,7 +65,7 @@ export const crearPlaylist = async (req, res) => {
         }
 
         // Consultar si el usuario existe
-        const existeUsuario = await usuario.findByPk(userId);
+        const existeUsuario = await usuario.findByPk(id_usuario);
 
         if (!existeUsuario) {
             return res.status(400).json({ message: 'El usuario no existe' });
@@ -74,7 +74,7 @@ export const crearPlaylist = async (req, res) => {
         // Crear una nueva instancia de playlist
         const nuevaplaylist = new playlist({
             nombre_playlist,
-            id_usuario: userId // Asignar el ID del usuario a la playlist
+            id_usuario 
         });
 
         // Guardar en la BD

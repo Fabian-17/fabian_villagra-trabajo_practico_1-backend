@@ -8,6 +8,6 @@ const router = Router();
 router.get('/obtenerUsuario', obtenerUsuarios);
 router.get('/obtenerUsuario/:id', obtenerUsuario);
 
-router.post('/crearUsuario',createUser, usuarioSchema, validateSchema, crearUsuario);
+router.post('/crearUsuario', usuarioSchema, createUser, validateSchema, crearUsuario);
 
 export {router}

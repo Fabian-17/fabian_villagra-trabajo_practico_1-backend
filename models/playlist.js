@@ -12,6 +12,10 @@ const playlist = sequelize.define('playlist', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    id_usuario: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,

@@ -12,6 +12,10 @@ const canciones = sequelize.define('canciones' , {
         type: DataTypes.STRING,
         allowNull: false   
     },
+    id_playlist: {
+        type: DataTypes.INTEGER,
+        allowNull: false   
+    },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
