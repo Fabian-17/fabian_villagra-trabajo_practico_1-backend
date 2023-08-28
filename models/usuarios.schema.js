@@ -5,7 +5,7 @@ export const usuarioSchema = checkSchema({
     errorMessage: 'El email ingresado es invalido',
     isEmail: true
   },
-  contraseña: {
+  password: {
     isLength: {
       options: { min: 8 },
       errorMessage: 'La contraseña como minimo debe tener 8 caracteres'

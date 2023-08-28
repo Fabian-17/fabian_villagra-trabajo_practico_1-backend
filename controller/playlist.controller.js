@@ -92,18 +92,22 @@ export const crearPlaylist = async (req, res) => {
 export const actualizarPlaylist = async (req, res) => {
     try {
         const { id } = req.params;
-        const playlist = await playlist.findByPk(id);
+        const play = await playlist.findByPk(id);
 
-        console.log(playlist);
+        console.log(play);
 
-        if (!playlist) {
+        if (!play) {
             return res.status(500).json(
                 {
-                    message:"Error"
+                    message:"La playlist no existe"
                 })
         }
 
-        await playlist.update(req.body)
+        await playlist.update(req.body, {
+            where: {
+                id
+            }
+        })
         return res.json({
             message: 'Playlist actualizada exitosamente'
         });

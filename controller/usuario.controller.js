@@ -10,7 +10,7 @@ export const crearUsuario = async (req, res) => {
         apellido,
         email,
         user,
-        contraseña
+        password
     } = req.body; 
     try {
         // Se verifica si el usuario ya existe
@@ -26,20 +26,19 @@ export const crearUsuario = async (req, res) => {
                 message: 'El usuario ya existe',
             })
         };
-        const nuevoUsuario = new usuario({
+
+        // Encriptar contraseña
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Guardar usuario en la base de datos
+        const usuarioCreado = await usuario.create({
             nombre,
             apellido,
             email,
             user,
-            contraseña,
+            password: hashedPassword
         });
-
-        // Encriptar contraseña
-        const salt = await bcrypt.genSalt(10);
-        nuevoUsuario.contraseña = await bcrypt.hash(contraseña, salt);
-
-        // Guardar usuario en la base de datos
-        const usuarioCreado = await nuevoUsuario.save();
 
         if (!usuarioCreado) {
             throw ({

@@ -3,12 +3,12 @@ import { obtenerCancion,
 obtenerCanciones,
 crearCancion } from "../controller/canciones.controller.js";
 
-const route = Router();
+const CancionesRoutes = Router();
 
-route.get('/obtenerCancion', obtenerCanciones);
-route.get('/obtenerCancion/:id', obtenerCancion);
+CancionesRoutes.get('/', obtenerCanciones);
+CancionesRoutes.get('/:id', obtenerCancion);
 
-route.post('/crearCancion', crearCancion);
+CancionesRoutes.post('/', crearCancion);
 
-export {route}
+export {CancionesRoutes}
 

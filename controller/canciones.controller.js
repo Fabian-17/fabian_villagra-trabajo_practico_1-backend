@@ -59,20 +59,20 @@ export const obtenerCancion = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const cancio = await canciones.findOne({
+        const music = await canciones.findOne({
             where: {
                 id
             }
         });
 
-        if (!cancio) {
+        if (!music) {
             throw ({
                 status: 404,
                 message: 'No existe la cancion'
             })
         }
     
-        return res.json(cancio);
+        return res.json(music);
 
     } catch (error) {
         return res.status(error.status || 500).json(error.message || 'Error interno del servidor');

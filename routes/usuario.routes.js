@@ -3,11 +3,11 @@ import {crearUsuario, obtenerUsuario, obtenerUsuarios } from "../controller/usua
 import { validateSchema } from "../middleware/ValidationSchema.js";
 import { usuarioSchema } from "../models/usuarios.schema.js";
 
-const router = Router();
+const UsuarioRouter = Router();
 
-router.get('/obtenerUsuario', obtenerUsuarios);
-router.get('/obtenerUsuario/:id', obtenerUsuario);
+UsuarioRouter.get('/', obtenerUsuarios);
+UsuarioRouter.get('/:id', obtenerUsuario);
 
-router.post('/crearUsuario', usuarioSchema, validateSchema, crearUsuario);
+UsuarioRouter.post('/', usuarioSchema, validateSchema, crearUsuario);
 
-export {router}
+export {UsuarioRouter}

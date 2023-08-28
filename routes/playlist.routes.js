@@ -5,21 +5,21 @@ import {obtenerPlaylists,
        actualizarPlaylist, 
         eliminarPlaylist} from "../controller/playlist.controller.js";
 
-const routes = Router();
+const PlaylistRoutes = Router();
 
 // Obtener todas las playlists
-routes.get('/obtenerPlaylist/', obtenerPlaylists);
+PlaylistRoutes.get('/', obtenerPlaylists);
 
 //Obtener una playlist
-routes.get('/obtenerPlaylist/:id', obtenerPlaylist);
+PlaylistRoutes.get('/:id', obtenerPlaylist);
  
 // Crear una playlist
-routes.post('/crearPlaylist/', crearPlaylist);
+PlaylistRoutes.post('/', crearPlaylist);
  
 // Actualizar una playlist
-routes.put('/obtenerPlaylist/:id', actualizarPlaylist);
+PlaylistRoutes.put('/:id', actualizarPlaylist);
  
 // Eliminar una playlist
-routes.delete('/obtenerPlaylist/:id', eliminarPlaylist);
+PlaylistRoutes.delete('/:id', eliminarPlaylist);
 
-export {routes}
+export {PlaylistRoutes}
