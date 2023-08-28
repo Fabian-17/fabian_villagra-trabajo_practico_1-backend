@@ -42,6 +42,10 @@ const playlist = sequelize.define('playlist', {
  });
 
 
+ usuario.hasMany(playlist, {
+    foreignKey: 'id_usuario'
+});
+
 playlist.sync();
 
 export default playlist;

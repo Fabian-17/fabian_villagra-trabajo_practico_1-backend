@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { obtenerCancion,
 obtenerCanciones,
-crearCancion } from "../controller/canciones.controller";
+crearCancion } from "../controller/canciones.controller.js";
 
 const route = Router();
 

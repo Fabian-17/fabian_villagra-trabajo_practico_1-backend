@@ -1,19 +1,7 @@
 import usuario from "../models/usuarios.js";
 import bcrypt from "bcrypt";
-import { body, validationResult } from 'express-validator';
+import playlist from "../models/playlist.js";
 
-export const createUser = (req, res) => {
-    body('email').notEmpty().isEmail();
-    body('password').notEmpty();
-  
-    const errors = validationResult(req);
-  
-    if (errors.isEmpty()) {
-      return res.json(req.body);
-    }
-    console.log(req.body);
-    res.status(400).json(errors.array());
-  };
 
 // Crear un usuario
 export const crearUsuario = async (req, res) => {
@@ -78,11 +66,7 @@ export const crearUsuario = async (req, res) => {
 
 export const obtenerUsuarios = async (req, res) => {
     try {
-        const usuarios = await usuario.findAll({
-            where: {
-                id: req.params.id
-            }
-        });
+        const usuarios = await usuario.findAll();
 
         return res.json(usuarios);
     } catch (error) {
@@ -101,20 +85,21 @@ export const obtenerUsuario = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const usuario = await usuario.findOne({
+        const usuarios = await usuario.findOne({
             where: {
                 id
-            }
+            },
+            include: [{ model: playlist}]
         });
 
-        if (!usuario) {
+        if (!usuarios) {
             throw ({
                 status: 404,
                 message: 'No existe el usuario'
             })
         }
     
-        return res.json(usuario);
+        return res.json(usuarios);
 
     } catch (error) {
         return res.status(error.status || 500).json(error.message || 'Error interno del servidor');

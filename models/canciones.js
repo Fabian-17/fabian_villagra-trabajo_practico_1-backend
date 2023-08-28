@@ -37,9 +37,14 @@ const canciones = sequelize.define('canciones' , {
     tableName: 'canciones'
 });
 
+playlist.hasMany(canciones, {
+    foreignKey: 'id_playlist'
+});
+
  canciones.belongsTo(playlist, {
      foreignKey: 'id_playlist'
  });
+
 
 canciones.sync();
 

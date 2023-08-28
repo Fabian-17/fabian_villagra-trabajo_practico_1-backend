@@ -1,3 +1,4 @@
+import canciones from "../models/canciones.js";
 import playlist from "../models/playlist.js";
 import usuario from "../models/usuarios.js";
 
@@ -9,11 +10,7 @@ import usuario from "../models/usuarios.js";
 
 export const obtenerPlaylists = async (req, res) => {
     try {
-        const playlists = await playlist.findAll({
-            where: {
-                id: req.params.id
-            }
-        });
+        const playlists = await playlist.findAll();
 
         return res.json(playlists);
     } catch (error) {
@@ -31,20 +28,21 @@ export const obtenerPlaylist = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const playlist = await playlist.findOne({
+        const playlists = await playlist.findOne({
             where: {
                 id
-            }
+            },
+            include: [{model: canciones}]
         });
 
-        if (!playlist) {
+        if (!playlists) {
             throw ({
                 status: 404,
                 message: 'No existe la playlist'
             })
         }
     
-        return res.json(playlist);
+        return res.json(playlists);
 
     } catch (error) {
         return res.status(error.status || 500).json(error.message || 'Error interno del servidor');
@@ -76,6 +74,7 @@ export const crearPlaylist = async (req, res) => {
             nombre_playlist,
             id_usuario 
         });
+
 
         // Guardar en la BD
         await nuevaplaylist.save();

@@ -40,13 +40,9 @@ export const crearCancion = async (req, res) => {
 
 export const obtenerCanciones = async (req, res) => {
     try {
-        const canciones = await canciones.findAll({
-            where: {
-                id: req.params.id
-            }
-        });
+        const cancion = await canciones.findAll();
 
-        return res.json(canciones);
+        return res.json(cancion);
     } catch (error) {
         console.log('Error al obtener las canciones', error);
         return res.status(500).json({
@@ -63,20 +59,20 @@ export const obtenerCancion = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const cancion = await canciones.findOne({
+        const cancio = await canciones.findOne({
             where: {
                 id
             }
         });
 
-        if (!cancion) {
+        if (!cancio) {
             throw ({
                 status: 404,
                 message: 'No existe la cancion'
             })
         }
     
-        return res.json(cancion);
+        return res.json(cancio);
 
     } catch (error) {
         return res.status(error.status || 500).json(error.message || 'Error interno del servidor');
